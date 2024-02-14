@@ -12,9 +12,6 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       colors: {
@@ -51,6 +48,9 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      gridTemplateColumns: {
+        'layout': '1fr auto 1fr',
       },
       borderRadius: {
         lg: "var(--radius)",

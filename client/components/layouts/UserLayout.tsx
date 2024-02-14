@@ -9,11 +9,12 @@ import {
 function HomePage() {
   return (
 
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr' }}>
-      <div style={{ marginRight: 'left' }}>
+    <div className="grid grid-cols-layout items-center">
+      <div className="bg-slate-100">
         <h1>Sport-events</h1>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
+
         <Menubar>
           <MenubarMenu>
             <MenubarTrigger>Eventos</MenubarTrigger>
