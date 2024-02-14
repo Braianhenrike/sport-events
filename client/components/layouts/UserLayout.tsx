@@ -5,12 +5,13 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "../ui/menubar"
+import '../css/UserLayouts.css'
 
 function HomePage() {
   return (
 
     <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr' }}>
-      <div style={{ marginRight: 'left' }}>
+      <div className="logo">
         <h1>Sport-events</h1>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>

@@ -21,3 +21,23 @@
   font-weight: 500;
   outline: none;
 }
+
+@media (max-width: 680px) {
+  .px-responsive {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+
+@media (max-width: 681px) {
+  .px-responsive {
+    display: none;
+  }
+}
+
+@media (min-width: 1228px) {
+  .px-responsive {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
