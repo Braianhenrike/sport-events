@@ -8,14 +8,9 @@ import {
 
 function HomePage() {
   return (
-
-    <div className="grid grid-cols-layout items-center">
-      <div className="bg-slate-100">
-        <h1>Sport-events</h1>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-        <Menubar>
+    <div>
+      <div>
+        <Menubar className="mx-auto p-4 bg-slate-900 shadow-slate-500 shadow-2xl">
           <MenubarMenu>
             <MenubarTrigger>Eventos</MenubarTrigger>
             <MenubarContent>
@@ -47,6 +42,17 @@ function HomePage() {
             </MenubarContent>
           </MenubarMenu>
         </Menubar>
+      </div>
+      <div className="text-center mt-14">
+        <h1 className="text-8xl font-bold">Trajetória do atleta</h1>
+      </div>
+      <div className="flex items-center justify-center">
+        <img
+          src="../../img/bg-stadium.jpg"
+          alt="Pista de corrida no estádio"
+          className="object-cover h-80 w-3/5 border-t-4"
+          style={{ objectPosition: 'bottom' }}
+        />
       </div>
     </div>
   );
