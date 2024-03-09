@@ -1,20 +1,15 @@
 import Menu from '../Menu/menu';
 import ClickableCircle from '../ClickbleCircle/clickableCircle';
+import Footer from '../footer/Footer';
 import { motion } from 'framer-motion';
 import { slideIn, textVariant } from '../utils/motion';
 import { useInView } from 'react-intersection-observer';
 
+
 function HomePage() {
   const { ref, inView } = useInView({ threshold: 0.9 });
 
-  const scrollToTop = () => {
-    console.log("pq não funciona?????");
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
+  const scrollToTop = () => window.scrollTo({ top: 0 });
 
   return (
     <div className="h-screen overflow-y-auto overflow-x-hidden">
@@ -39,9 +34,9 @@ function HomePage() {
         <div className="flex justify-center mt-12 sm:space-x-16 md:space-x-20 xl:md:space-x-28 2xl:md:space-x-40 mb-8 ">
           <ClickableCircle text="Próximo evento" link="/next-event" image="../../img/calendar.jpg" />
           <ClickableCircle text="Sua foto" link="/your-photo" image="../../img/SuaFoto.jpeg" />
-          <ClickableCircle text="Melhore seu tempo" link="/improve-time" image="../../img/SuaFoto.jpeg" />
-          <ClickableCircle text="Nutrição" link="/nutrition" image="../../img/SuaFoto.jpeg" />
-          <ClickableCircle text="Corridas recentes" link="/recent-races" image="../../img/SuaFoto.jpeg" />
+          <ClickableCircle text="Corra + rápido" link="/improve-time" image="../../img/corra+rapido.jpg" />
+          <ClickableCircle text="Nutrição" link="/nutrition" image="../../img/nutricao.jpg" />
+          <ClickableCircle text="Corridas recentes" link="/recent-races" image="../../img/corridasRecentes.jpg" />
         </div>
       </motion.div>
       <motion.div
@@ -88,10 +83,10 @@ function HomePage() {
           <a href="/run-faster-ebook" className="text-slate-600">dicas de treinamento</a>,{' '}
           <a href="/healthy-recipes-ebook" className="text-slate-600">receitas saudáveis</a>, e muito mais para ajudar a melhorar sua performance e promover um estilo de vida ativo e saudável. Explore nossos conteúdos e descubra como dar o próximo passo na sua trajetória como atleta.
         </p>
-
-        <button onClick={scrollToTop} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Voltar ao Topo</button>
       </motion.div>
 
+      <button onClick={scrollToTop} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Voltar ao Topo</button>
+      <Footer/>
     </div >
   );
 }
