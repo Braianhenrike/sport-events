@@ -2,11 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
+
   return (
     <motion.footer
       initial="hidden"
       whileInView="show"
-      className="sm:p-16 xs:p-8 px-6 py-12 py-8 relative"
+      className="sm:p-16 xs:p-8 px-6 py-12 relative"
     >
       <div className="footer-gradient" />
 
@@ -38,8 +39,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
+
     </motion.footer>
   );
 };
 
 export default Footer;
+
