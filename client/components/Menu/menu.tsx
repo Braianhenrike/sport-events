@@ -8,7 +8,7 @@ import {
 
 const Menu = () => {
   return (
-    <Menubar className="mx-auto p-4 bg-slate-900 shadow-neon shadow-2xl">
+    <Menubar className="mx-auto p-4 bg-slate-900">
       <MenubarMenu>
         <MenubarTrigger>Eventos</MenubarTrigger>
         <MenubarContent>
