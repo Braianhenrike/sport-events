@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\braia\Desktop\Loja virtual\back-end"/>
 			<item value="C:\Users\braia\Desktop\sports-events\api"/>
 			<item value="C:\Users\braia\Desktop\sports-events"/>
 		</list>

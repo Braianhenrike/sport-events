@@ -8,8 +8,6 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
 
-  const scrollToTop = () => window.scrollTo({ top: 0 });
-
   return (
     <div className="h-screen overflow-y-auto overflow-x-hidden">
       <Menu />

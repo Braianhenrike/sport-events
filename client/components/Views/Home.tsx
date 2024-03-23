@@ -31,7 +31,7 @@ function HomePage() {
           ref={ref}
         >
           <div className="flex justify-center mt-12 sm:space-x-16 md:space-x-20 xl:md:space-x-28 2xl:md:space-x-40 mb-8 ">
-            <ClickableCircle text="Próximo evento" link="/next-event" image="../../img/calendar.jpg" />
+            <ClickableCircle text="Próximo evento" link="/registration" image="../../img/calendar.jpg" />
             <ClickableCircle text="Sua foto" link="/your-photo" image="../../img/SuaFoto.jpeg" />
             <ClickableCircle text="Corra + rápido" link="/improve-time" image="../../img/corra+rapido.jpg" />
             <ClickableCircle text="Nutrição" link="/nutrition" image="../../img/nutricao.jpg" />

@@ -1,12 +1,29 @@
-
-import UserLayout from './components/Views/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomePage from './components/Views/Home';
+import Registration from './components/Views/Registration';
 import './app/globals.css';
+import { ErrorBoundary } from 'react-error-boundary';
+
+function ErrorFallback({ error }: { error: Error }) {
+  return (
+    <div>
+      <h2>Something went wrong:</h2>
+      <p>{error.message}</p>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div>
-      <UserLayout />
-    </div>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/home" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
+
   );
 }
 
