@@ -1,8 +1,29 @@
-import React, { useState } from "react";
-import { Box, Form, Input, Select, Checkbox, Button } from '../ui';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FaShoppingCart } from 'react-icons/fa';
+
+import { Card } from '../ui/card';
+import { Form, FormLabel } from '../ui/form';
+import { Input } from '../ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
+import { Checkbox } from '../ui/checkbox';
+import { Button } from '../ui/button';
+
 import Layout from "../Layout/Layout";
 
 const Registration = () => {
+
+  const [kitCount, setKitCount] = useState(0);
+  const [noKitCount, setNoKitCount] = useState(0);
+  const methods = useForm();
+  const { handleSubmit: handleFormSubmit } = methods;
+
   const [formData, setFormData] = useState({
     nome: "",
     dataNascimento: "",
@@ -18,15 +39,13 @@ const Registration = () => {
     cienciaPix: false,
   });
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
-    // Validação de dados
 
     if (!formData.nome) {
       alert("Preencha o campo nome");
@@ -83,154 +102,143 @@ const Registration = () => {
       return;
     }
 
-    // Envio dos dados
-
-    // Integração com pagamento por PIX
-
-    // Redirecionamento para página de confirmação
-
     alert("Inscrição realizada com sucesso!");
+  };
+
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   return (
     <Layout>
-      <Box>
-        <h1>Corrida Rústica 5K São Marcos</h1>
-        <p>21 de abril de 2024</p>
-        <p>
-          A Corrida Rústica faz parte das atividades esportivas da Secretaria de
-          Cultura, Desporto e Turismo de São Marcos, onde visa além da integração
-          entre atletas, a saúde e bem estar de todos os competidores,
-          proporcionando aos cidadãos esporte e lazer e aos visitantes uma
-          calorosa recepção da Cidade.
-        </p>
-        <a href="https://www.chip5.com.br/saomarcos5k/">Regulamento completo</a>
-      </Box>
+      <div>
+        <Card className="mt-20">
+          <div className="text-center">
+            <h1 className="text-slate-100 text-3xl">
+              Corrida Rústica 5K São Marcos
+            </h1>
+            <p className="text-blue-400">21 - abril - 2024</p>
+          </div>
+        </Card>
+        <Card className="text-slate-300 mt-9">
 
-      <Box>
-        <h2>Inscrição</h2>
+          <Form {...methods}>
+            <form onSubmit={handleFormSubmit(onSubmit)} className="grid grid-cols-2 gap-4 b">
+              <div className="p-4">
+                <Input
+                  name="nome"
+                  label="Nome completo"
+                  value={formData.nome}
+                  onChange={handleInputChange}
+                />
 
-        <Form onSubmit={handleSubmit}>
-          <Input
-            name="nome"
-            label="Nome completo"
-            value={formData.nome}
-            onChange={handleInputChange}
-          />
+                <Input
+                  name="email"
+                  label="Email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
 
-          <Input
-            name="dataNascimento"
-            label="Data de nascimento"
-            type="date"
-            value={formData.dataNascimento}
-            onChange={handleInputChange}
-          />
+                <Input
+                  name="telefone"
+                  label="Telefone"
+                  value={formData.telefone}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="p-7 mt-3">
+                <div className="bg-slate-100 rounded-xl">
+                  <div className="bg-slate-800 rounded-t-lg grid grid-cols-3 items-center">
+                    <FormLabel className="ml-2 text-base">Inscrições</FormLabel>
+                    <div className="col-start-4">
+                      <FormLabel className="flex items-center">
+                        <FaShoppingCart /> R$ 0,00
+                      </FormLabel>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p>Com kit</p>
+                      <p>R$ 30,00</p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => setKitCount(kitCount > 0 ? kitCount - 1 : 0)}
+                        disabled={kitCount === 0}
+                      >
+                        -
+                      </button>
+                      {kitCount}
+                      <button onClick={() => setKitCount(kitCount + 1)}>+</button>
+                    </div>
+                  </div>
 
-          <Input
-            name="telefone"
-            label="Telefone"
-            value={formData.telefone}
-            onChange={handleInputChange}
-          />
+                  <hr className="my-4" />
 
-          <Select
-            name="sexo"
-            label="Sexo"
-            value={formData.sexo}
-            onChange={handleInputChange}
-          >
-            <option value="">Selecione</option>
-            <option value="feminino">Feminino</option>
-            <option value="masculino">Masculino</option>
-          </Select>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p>Sem kit</p>
+                      <p>R$ 30,00</p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => setNoKitCount(noKitCount > 0 ? noKitCount - 1 : 0)}
+                        disabled={noKitCount === 0}
+                      >
+                        -
+                      </button>
+                      {noKitCount}
+                      <button onClick={() => setNoKitCount(noKitCount + 1)}>+</button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center">
+                    <Button type="submit">Enviar</Button>
+                  </div>
+                </div>
+              </div>
 
-          <Input
-            name="email"
-            label="Email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
+              <div className="mt-[-60px] p-4">
+                <Input
+                  name="dataNascimento"
+                  label="Data de nascimento"
+                  type="date"
+                  value={formData.dataNascimento}
+                  onChange={handleInputChange}
+                />
 
-          <Input
-            name="equipe"
-            label="Equipe (opcional)"
-            value={formData.equipe}
-            onChange={handleInputChange}
-          />
-          <Input
-            name="cidade"
-            label="Cidade"
-            value={formData.cidade}
-            onChange={handleInputChange}
-          />
-
-          <Select
-            name="kit"
-            label="Opção com ou sem kit"
-            value={formData.kit}
-            onChange={handleInputChange}
-          >
-            <option value="">Selecione</option>
-            <option value="semKit">Sem kit</option>
-            <option value="comKit">Com kit</option>
-          </Select>
-
-          {formData.kit === "comKit" && (
-            <Select
-              name="tamanhoCamiseta"
-              label="Tamanho da camiseta"
-              value={formData.tamanhoCamiseta}
-              onChange={handleInputChange}
-            >
-              <option value="">Selecione</option>
-              <option value="p">P</option>
-              <option value="m">M</option>
-              <option value="g">G</option>
-              <option value="gg">GG</option>
-            </Select>
-          )}
-
-          <Select
-            name="categoria"
-            label="Categoria"
-            value={formData.categoria}
-            onChange={handleInputChange}
-          >
-            <option value="">Selecione</option>
-            <option value="02-06">02 a 06 anos</option>
-            <option value="07-09">07 a 09 anos</option>
-            <option value="10-15">10 a 15 anos</option>
-            <option value="16-19">16 a 19 anos</option>
-            <option value="20-24">20 a 24 anos</option>
-            <option value="25-29">25 a 29 anos</option>
-            <option value="30-34">30 a 34 anos</option>
-            <option value="35-39">35 a 39 anos</option>
-            <option value="40-44">40 a 44 anos</option>
-            <option value="45-49">45 a 49 anos</option>
-            <option value="50-54">50 a 54 anos</option>
-            <option value="55-59">55 a 59 anos</option>
-            <option value="60-64">60 a 64 anos</option>
-            <option value="65">65 anos acima</option>
-          </Select>
-
-          <Checkbox
-            name="cienciaRegulamento"
-            label="Li e concordo com o regulamento"
-            value={formData.cienciaRegulamento}
-            onChange={handleInputChange}
-          />
-
-          <Checkbox
-            name="cienciaPix"
-            label="Li e concordo com o pagamento por PIX"
-            value={formData.cienciaPix}
-            onChange={handleInputChange}
-          />
-
-          <Button type="submit">Enviar</Button>
-        </Form>
-      </Box>
+                <Input
+                  name="equipe"
+                  label="Equipe (opcional)"
+                  value={formData.equipe}
+                  onChange={handleInputChange}
+                />
+                <Input
+                  name="cidade"
+                  label="Cidade"
+                  value={formData.cidade}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="p-7 mt-[-40px]">
+                <h1 className="text-xl text-slate-100">Decrição do evento</h1>
+                <p className="text-slate-300 text-sm mt-3">
+                  A Corrida Rústica faz parte das atividades esportivas da Secretaria de
+                  Cultura, Desporto e Turismo de São Marcos, onde visa além da integração
+                  entre atletas, a saúde e bem estar de todos os competidores,
+                  proporcionando aos cidadãos esporte e lazer e aos visitantes uma
+                  calorosa recepção da Cidade.
+                </p>
+                <div className="flex justify-end mt-[40px] text-slate-500">
+                  <a href="/">Regulamento completo aqui</a>
+                  {/* Add link to regulation */}
+                </div>
+              </div>
+            </form>
+          </Form>
+        </Card>
+      </div>
     </Layout>
   );
 };

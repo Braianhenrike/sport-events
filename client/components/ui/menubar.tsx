@@ -23,7 +23,7 @@ const Menubar = React.forwardRef<
   <MenubarPrimitive.Root
     ref={ref}
     className={cn(
-      "flex h-9 items-center justify-center space-x-1 rounded-md bg-background p-1 shadow-sm",
+      "flex h-9 items-center justify-center space-x-1 rounded-b-3xl shadow-neon shadow-3xl  bg-background p-1",
       className
     )}
     {...props}
