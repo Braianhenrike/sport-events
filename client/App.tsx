@@ -20,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/registration" element={<Registration />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
