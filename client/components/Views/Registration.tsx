@@ -5,19 +5,13 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { Card } from '../ui/card';
 import { Form, FormLabel } from '../ui/form';
 import { Input } from '../ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select';
-import { Checkbox } from '../ui/checkbox';
 import { Button } from '../ui/button';
 
 import Layout from "../Layout/Layout";
 
 const Registration = () => {
+
+
 
   const [kitCount, setKitCount] = useState(0);
   const [noKitCount, setNoKitCount] = useState(0);
@@ -41,71 +35,16 @@ const Registration = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+  
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!formData.nome) {
-      alert("Preencha o campo nome");
-      return;
-    }
-
-    if (!formData.dataNascimento) {
-      alert("Preencha o campo data de nascimento");
-      return;
-    }
-
-    if (!formData.telefone) {
-      alert("Preencha o campo telefone");
-      return;
-    }
-
-    if (!formData.sexo) {
-      alert("Preencha o campo sexo");
-      return;
-    }
-
-    if (!formData.email) {
-      alert("Preencha o campo email");
-      return;
-    }
-
-    if (!formData.cidade) {
-      alert("Preencha o campo cidade");
-      return;
-    }
-
-    if (!formData.kit) {
-      alert("Escolha a opção com ou sem kit");
-      return;
-    }
-
-    if (formData.kit === "comKit" && !formData.tamanhoCamiseta) {
-      alert("Escolha o tamanho da camiseta");
-      return;
-    }
-
-    if (!formData.categoria) {
-      alert("Escolha a sua categoria");
-      return;
-    }
-
-    if (!formData.cienciaRegulamento) {
-      alert("É necessário confirmar que você leu o regulamento");
-      return;
-    }
-
-    if (!formData.cienciaPix) {
-      alert("É necessário confirmar que você leu sobre o pagamento por PIX");
-      return;
-    }
-
-    alert("Inscrição realizada com sucesso!");
-  };
+  const isFormValid = formData.nome !== '' && formData.email !== '' && formData.telefone !== '' && formData.dataNascimento !== '' && formData.cidade !== '' && (kitCount > 0 || noKitCount > 0);
 
   const onSubmit = (data: any) => {
+    console.log("foi")
     console.log(data);
   };
 
@@ -152,54 +91,73 @@ const Registration = () => {
                   <div className="bg-slate-800 rounded-t-lg grid grid-cols-3 items-center">
                     <FormLabel className="ml-2 text-base">Inscrições</FormLabel>
                     <div className="col-start-4">
-                      <FormLabel className="flex items-center">
+                      <FormLabel className="flex items-center mr-4">
                         <FaShoppingCart /> R$ 0,00
                       </FormLabel>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <div>
+                    <div className="ml-6">
                       <p>Com kit</p>
-                      <p>R$ 30,00</p>
+                      <p>R$ 50,00</p>
                     </div>
-                    <div>
+                    <div className="mr-6 flex items-center">
                       <button
+                        className="w-5 h-5 flex items-center justify-center rounded-full border border-gray-300"
                         onClick={() => setKitCount(kitCount > 0 ? kitCount - 1 : 0)}
                         disabled={kitCount === 0}
                       >
-                        -
+                        <span className='mb-1'>-</span>
                       </button>
-                      {kitCount}
-                      <button onClick={() => setKitCount(kitCount + 1)}>+</button>
+                      <div className='p-2'>
+                        {kitCount}
+                      </div>
+                      <button
+                        className="w-5 h-5 flex items-center justify-center rounded-full border border-gray-300"
+                        onClick={() => setKitCount(kitCount + 1)}>
+                        <span className='mb-1'>+</span>
+                      </button>
                     </div>
                   </div>
 
                   <hr className="my-4" />
 
                   <div className="flex justify-between items-center">
-                    <div>
+                    <div className="ml-6">
                       <p>Sem kit</p>
                       <p>R$ 30,00</p>
                     </div>
-                    <div>
+                    <div className="mr-6 flex items-center space-">
                       <button
+                        className="w-5 h-5 flex items-center justify-center rounded-full border border-gray-300"
                         onClick={() => setNoKitCount(noKitCount > 0 ? noKitCount - 1 : 0)}
                         disabled={noKitCount === 0}
                       >
-                        -
+                        <span className='mb-1'>-</span>
                       </button>
-                      {noKitCount}
-                      <button onClick={() => setNoKitCount(noKitCount + 1)}>+</button>
+                      <div className='p-2'>
+                        {noKitCount}
+                      </div>
+                      <button
+                        className="w-5 h-5 flex items-center justify-center rounded-full border border-gray-300"
+                        onClick={() => setNoKitCount(noKitCount + 1)}
+                      >
+                        <span className='mb-1'>+</span>
+                      </button>
                     </div>
                   </div>
-                  
+
+                  <hr className="my-4" />
+
                   <div className="flex justify-center">
-                    <Button type="submit">Enviar</Button>
+                    <Button type="submit" disabled={!isFormValid}>
+                      Enviar
+                    </Button>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-[-60px] p-4">
+              <div className="mt-[-90px] p-4">
                 <Input
                   name="dataNascimento"
                   label="Data de nascimento"
