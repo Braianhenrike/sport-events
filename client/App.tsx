@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './components/Views/Home';
+import Calendar from './components/Views/Calendar';
 import Registration from './components/Views/Registration';
 import './app/globals.css';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/registration" element={<Registration />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
