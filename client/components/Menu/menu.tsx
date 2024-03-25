@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import {
   Menubar,
   MenubarContent,
@@ -7,12 +9,18 @@ import {
 } from '../ui/menubar';
 
 const Menu = () => {
+  const navigate = useNavigate(); 
+
+  const handleMenuItemClick = (path: string) => {
+    navigate(path); 
+  };
+
   return (
     <Menubar className="mx-auto p-4 bg-slate-900">
       <MenubarMenu>
         <MenubarTrigger>Eventos</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>Calendário</MenubarItem>
+          <MenubarItem onClick={() => handleMenuItemClick("/calendar")}>Calendário</MenubarItem>
           <MenubarItem>Resultados</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
