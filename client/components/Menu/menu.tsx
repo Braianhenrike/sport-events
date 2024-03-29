@@ -28,23 +28,23 @@ const Menu = () => {
       <MenubarMenu>
         <MenubarTrigger>Corrida de Rua</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>Comece agora</MenubarItem>
-          <MenubarItem>Planilha de treinos</MenubarItem>
+          <MenubarItem onClick={() => handleMenuItemClick("/ebook")}>Comece agora</MenubarItem>
+          <MenubarItem onClick={() => handleMenuItemClick("/ebook")}> Planilha de treinos</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
         <MenubarTrigger>Nutrição</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>Receitas</MenubarItem>
-          <MenubarItem>Ebook</MenubarItem>
+          <MenubarItem onClick={() => handleMenuItemClick("/ebook")}>Receitas</MenubarItem>
+          <MenubarItem onClick={() => handleMenuItemClick("/ebook")}>Ebook</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
         <MenubarTrigger>Saúde</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>Ebook</MenubarItem>
+          <MenubarItem onClick={() => handleMenuItemClick("/ebook")}>Ebook</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
