@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './components/Views/Home';
 import Calendar from './components/Views/Calendar';
 import Ebook from './components/Views/Ebook';
@@ -24,7 +24,7 @@ function App() {
           <Route path="/home" element={<HomePage/>}/>
           <Route path="/calendar" element={<Calendar/>}/>
           <Route path="/Ebook" element={<Ebook/>}/>
-          <Route path="/" element={<HomePage/>}/>
+          <Route path="/" element={<Navigate to="/home" replace />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("admin/user-profile")
+@RequestMapping("user-profile")
 public class UserController {
 
     private final UserService userService;
@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
     
-    @GetMapping("/edit/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<User> getUserProfile(@PathVariable Long userId) {
         User userProfile = userService.getUserProfile(userId);
 	    
@@ -32,7 +32,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/register")
     public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
         User updatedUser = userService.updateUser(userId, userDTO);
         if (updatedUser != null) {

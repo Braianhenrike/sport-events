@@ -8,6 +8,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 
 import Layout from "../Layout/Layout";
+import { createUser } from '../../axios_helper';
 
 const Registration = () => {
 
@@ -40,10 +41,15 @@ const Registration = () => {
   };
   const isFormValid = formData.nome !== '' && formData.email !== '' && formData.telefone !== '' && formData.dataNascimento !== '' && formData.cidade !== '' && (kitCount > 0 || noKitCount > 0);
 
-  const onSubmit = (data: any) => {
-    console.log("foi")
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    try {
+      await createUser(formData);
+      console.log("Usuário criado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao criar usuário:", error);
+    }
   };
+
 
   return (
     <Layout>

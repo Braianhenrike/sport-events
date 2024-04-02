@@ -26,7 +26,6 @@ public abstract class User implements UserDetails{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
 	private String nome;
 
 	private String dataNascimento;
@@ -40,6 +39,7 @@ public abstract class User implements UserDetails{
 	private String cidade;
 
 	private boolean kit;
+
 	private String tamanhoCamiseta;
 
 	public User() {
