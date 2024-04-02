@@ -30,7 +30,7 @@ public class UserService {
         if (optionalUser.isPresent()) {
             User existingUser = optionalUser.get();
 
-            BeanUtils.copyProperties(userUpdateDTO, existingUser, "id", "login", "role");
+            BeanUtils.copyProperties(userUpdateDTO, existingUser, "id");
 
             return userRepository.save(existingUser);
         } else {

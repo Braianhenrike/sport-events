@@ -1,4 +1,4 @@
- package com.SportEvent.entities;
+package com.Auth.entities;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.SportEvent.enums.UserRole;
+import com.Auth.enums.UserRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,9 +16,9 @@ import jakarta.persistence.Table;
 
 @Table(name = "users")
 @Entity(name = "users")
-public class User implements UserDetails{
+public abstract class User implements UserDetails{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5009013698335777207L;
 
@@ -26,56 +26,37 @@ public class User implements UserDetails{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String login;
-	
-    private String password;
-    
-    private String phone;
-    
-    private String photo; 
+	private String nome;
 
-    private String address;
-    
-    private String facebook;
+	private String dataNascimento;
 
-    private String gmail;
+	private String sexo;
 
-    private String twitter;
-    
-	private UserRole role;
-	
-    public User() {
-    }
-    
-    public User(Long id, String login, String password, String phone, String photo, String address, String facebook, String gmail, String twitter, UserRole role) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.phone = phone;
-        this.photo = photo;
-        this.address = address;
-        this.facebook = facebook;
-        this.gmail = gmail;
-        this.twitter = twitter;
-        this.role = role;
-    }
+	private String email;
 
-    public User(Long id, String login, String password, String phone, UserRole role) {
-    	this.id = id;
-        this.login = login;
-        this.password = password;
-        this.phone = phone;
-        this.role = role;
+	private String equipe;
 
-    }
-    
-    public User(String login, String password, String phone, UserRole role) {
-        this.login = login;
-        this.password = password;
-        this.phone = phone;
-        this.role = role;
+	private String cidade;
 
-    }
+	private boolean kit;
+
+	private String tamanhoCamiseta;
+
+	public User() {
+	}
+
+	public User(Long id, String nome, String dataNascimento, String sexo, String email, String equipe, String cidade, boolean kit, String tamanhoCamiseta) {
+		this.id = id;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.sexo = sexo;
+		this.email = email;
+		this.equipe = equipe;
+		this.cidade = cidade;
+		this.kit = kit;
+		this.tamanhoCamiseta = tamanhoCamiseta;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -84,78 +65,68 @@ public class User implements UserDetails{
 		this.id = id;
 	}
 
-	public UserRole getRole() {
-		return role;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setRole(UserRole role) {
-		this.role = role;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
-
-	public String getPhone() {
-		return phone;
+	public String getSexo() {
+		return sexo;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    
-
-	public String getFacebook() {
-		return facebook;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
-	public void setFacebook(String facebook) {
-		this.facebook = facebook;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getGmail() {
-		return gmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setGmail(String gmail) {
-		this.gmail = gmail;
+	public String getEquipe() {
+		return equipe;
 	}
 
-	public String getTwitter() {
-		return twitter;
+	public void setEquipe(String equipe) {
+		this.equipe = equipe;
 	}
 
-	public void setTwitter(String twitter) {
-		this.twitter = twitter;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public boolean isKit() {
+		return kit;
+	}
+
+	public void setKit(boolean kit) {
+		this.kit = kit;
+	}
+
+	public String getTamanhoCamiseta() {
+		return tamanhoCamiseta;
+	}
+
+	public void setTamanhoCamiseta(String tamanhoCamiseta) {
+		this.tamanhoCamiseta = tamanhoCamiseta;
 	}
 
 	@Override
@@ -176,14 +147,8 @@ public class User implements UserDetails{
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-		else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-	}
-	
-	@Override
 	public String getUsername() {
-		return login;
+		return email;
 	}
 
 	@Override

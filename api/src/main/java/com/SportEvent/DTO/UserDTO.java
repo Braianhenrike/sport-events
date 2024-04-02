@@ -1,4 +1,4 @@
 package com.SportEvent.DTO;
 
-public record UserDTO(String login, String phone, String photo, String role, String facebook, String gmail, String twitter) {
+public record UserDTO(Long id, String nome, String dataNascimento, String sexo, String email, String equipe, String cidade, boolean kit, String tamanhoCamiseta) {
 }
