@@ -28,9 +28,6 @@ const Registration = () => {
     cidade: "",
     kit: "",
     tamanhoCamiseta: "",
-    categoria: "",
-    cienciaRegulamento: false,
-    cienciaPix: false,
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
